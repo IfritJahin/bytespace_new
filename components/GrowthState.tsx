@@ -14,13 +14,15 @@ const points = ["Share Your Expertise", "Monetize Your Passion", "Flexibility an
 // the seam.
 export default function GrowthState() {
   return (
-    <section className="relative isolate overflow-hidden py-16 md:py-24">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-cover bg-center"
-        style={{ backgroundImage: "url('/bggrowth.png')" }}
-      />
-
+    <section
+      className="relative isolate overflow-hidden py-16 md:py-24"
+      style={{
+        backgroundImage: "linear-gradient(rgba(255,255,255,0.12), rgba(255,255,255,0.12)), url('/bggrowth.png')",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {/* Growth stats */}
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-10 px-6 md:grid-cols-2 md:px-24">
         <div>

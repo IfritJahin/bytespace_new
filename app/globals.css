@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "../public/fonts/Fonts/WEB/css/satoshi.css";
+
 
 :root {
   --background: #ffffff;
@@ -24,6 +26,17 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+/* Base layer so Tailwind utilities (text-sm, etc.) can still override these defaults */
+@layer base {
+  p {
+    font-family: 'Satoshi-Regular', sans-serif;
+    font-size: 18px;
+  }
+  button, li {
+    font-family: 'Satoshi-Medium', sans-serif;
+    font-size: 18px;
+  }
+}
 .nav-link {
   font-family: var(--font-geist-sans), sans-serif;
   font-size: 14px;
