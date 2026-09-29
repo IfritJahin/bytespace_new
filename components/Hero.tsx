@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Navbar from "./Navbar";
+import CourseCatalog from "./CourseCatalog";
 
 const logos = [{src: "/Frame (1).png"}, {src: "/Frame (2).png"}, {src: "/Frame (3).png"}, {src: "/Frame (4).png"}, {src: "/Frame (5).png"}];
 const ornaments = [
@@ -180,10 +181,7 @@ export default function Hero() {
             ))}
           </div>
       </section>
-      {/* <section id="discover" className="bg-white px-6 py-12 text-center sm:py-16">
-        <h2 className="text-2xl font-bold text-neutral-900 sm:text-3xl">Discover Your Passion</h2>
-        <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-neutral-500">Explore practical courses designed to help you learn something new and move forward.</p>
-      </section> */}
+      <CourseCatalog />
     </>
   );
 }
