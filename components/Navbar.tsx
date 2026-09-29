@@ -25,7 +25,7 @@ export default function Navbar() {
       </Link>
 
       <Link
-        href="/#discover"
+        href="/signup"
         className="transition-colors hover:text-[#D8FF4F]"
       >
         Join Us
