@@ -40,7 +40,7 @@ export default function Navbar() {
           alt=""
           width={16}
           height={16}
-          className="h-3.5 w-3.5 sm:h-5 sm:w-5"
+          className="h-5 w-4 sm:h-5 sm:w-4"
         />
       </button>
       </div>
