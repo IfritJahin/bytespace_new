@@ -1,31 +1,41 @@
+import Image from "next/image";
+
 const categories = [
-    { label: "Design", icon: "🎨" },
-    { label: "Development", icon: "💻" },
-    { label: "IT & Software", icon: "🖥️" },
-    { label: "Business", icon: "💼" },
-    { label: "Marketing", icon: "📣" },
-    { label: "Photography", icon: "📷" },
-  ];
-  
-  export default function ExploreLearning() {
-    return (
-      <section className="bg-neutral-50 py-16">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-2xl font-bold md:text-3xl">Explore Diverse Learning Paths at Bytespace</h2>
-          <p className="mt-4 text-xs text-neutral-500 md:text-sm">
-            At Bytespace, we believe in empowering individuals through knowledge. Our diverse range of courses spans
-            various fields, catering to your unique interests and career goals.
-          </p>
-        </div>
-  
-        <ul className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-4 px-6 sm:grid-cols-3 md:grid-cols-6">
-          {categories.map((c) => (
-            <li key={c.label} className="flex flex-col items-center gap-3">
-              <span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#D8FF4F] text-xl">{c.icon}</span>
-              <span className="text-xs font-medium text-neutral-700">{c.label}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-    );
-  }
+  { label: "Design", src: "/icon1.png" },
+  { label: "Development", src: "/icon2.png" },
+  { label: "IT & Software", src: "/icon3.png" },
+  { label: "Business", src: "/icon4.png" },
+  { label: "Marketing", src: "/icon5.png" },
+  { label: "Photography", src: "/icon6.png" },
+];
+
+export default function ExploreLearning() {
+  return (
+    <div className="mx-auto max-w-[1440px] px-6 pb-16 md:px-12 md:pb-24 lg:px-[100px]">
+      <div className="mx-auto max-w-[920px] text-center">
+        <h2 className="text-2xl font-bold leading-[1.2] text-neutral-900 md:text-[32px]">
+          Explore Diverse Learning Paths at Bytespace
+        </h2>
+        <p className="mt-4 text-sm leading-relaxed text-neutral-500 md:text-base">
+          At Bytespace, we believe in empowering individuals through knowledge. Our diverse range of courses spans
+          various fields, ensuring there&apos;s something for everyone. Unleash your potential and explore our carefully
+          curated categories.
+        </p>
+      </div>
+
+      <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:grid-cols-6">
+        {categories.map((c) => (
+          <li key={c.label}>
+            <a
+              href="#discover"
+              className="flex h-full flex-col items-center gap-4 rounded-2xl border border-neutral-200 bg-white px-3 py-7 text-center transition hover:-translate-y-0.5 hover:border-[#D8FF4F] hover:shadow-[0_10px_30px_rgba(16,24,40,.08)]"
+            >
+              <Image src={c.src} alt="" width={60} height={60} className="h-[60px] w-[60px]" />
+              <span className="text-sm font-medium text-neutral-800">{c.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
