@@ -2,6 +2,7 @@ import CourseCatalog from "@/components/CourseCatalog";
 import CreatorsFeature from "@/components/CreatorsFeature";
 import GrowthState from "@/components/GrowthState";
 import Hero from "@/components/Hero";
+import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
@@ -10,6 +11,8 @@ export default function Home() {
       <CourseCatalog />
       <GrowthState/>
       <CreatorsFeature/>
+      <Testimonials />
+
     </main>
   );
 }
