@@ -2,7 +2,44 @@ import Image from "next/image";
 import Navbar from "./Navbar";
 
 const logos = ["Logoipsum", "Logoipsum", "Logoipsum", "Logoipsum", "Logoipsum"];
-
+const ornaments = [
+  {
+    src: "/colorspring.png",
+    width: 200,
+    height: 200,
+    className: "left-[-18px] top-[100px] w-[250px]",
+  },
+  {
+    src: "/spring1.png",
+    width: 175,
+    height: 175,
+    className: "left-[183px] top-[477px] w-[175px] -rotate-180",
+  },
+  {
+    src: "/spring2.png",
+    width: 330,
+    height: 330,
+    className: "right-[113px] top-[672px] w-[330px]",
+  },
+  {
+    src: "/Cone.png",
+    width: 188,
+    height: 188,
+    className: "right-[146px] top-[464px] w-[188px]",
+  },
+  {
+    src: "/circle.png",
+    width: 342,
+    height: 342,
+    className: "left-[18px] top-[682px] w-[342px]",
+  },
+  {
+    src: "/cyllinder.png",
+    width: 370,
+    height: 370,
+    className: "right-[-20px] top-[100px] w-[250px]",
+  },
+];
 export default function Hero() {
   return (
     <>
@@ -16,20 +53,63 @@ export default function Hero() {
         }}
       >
         <Navbar />
+        {/* 3D ornaments: above the circle and content, natural size, centered on the frame */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 z-0 mx-auto h-full max-w-[0px] bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url("/3d%20ornament.png")',
-            backgroundSize: "100% auto",
-          }}
-        />
+          className="pointer-events-none absolute inset-0 z-30 hidden overflow-hidden lg:block"
+        >
+          <Image
+            src="/3d ornament.png"
+            alt=""
+            width={1719}
+            height={803}
+            priority
+            className="absolute left-1/2 top-[110px] h-auto w-[1719px] max-w-none -translate-x-1/2"
+          />
+        </div>
         <div className="relative z-10 mx-auto flex max-w-[1440px] flex-col items-center px-5 pt-8 text-center sm:px-8 md:pt-10 lg:pt-12">
-          <h1 className="max-w-[760px] text-[38px] font-bold leading-[1.08] sm:text-5xl lg:text-[56px]">
+        {/* <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-[1]"
+        >
+          {ornaments.map((ornament) => (
+            <Image
+              key={ornament.src}
+              src={ornament.src}
+              alt=""
+              width={ornament.width}
+              height={ornament.height}
+              className={`absolute h-auto ${ornament.className}`}
+            />
+          ))}
+        </div> */}
+        {/* <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-30"
+          style={{
+            width: "1300px",
+            height: "803px",
+            top: "20px",
+            left: "",
+          }}
+        >
+          <Image
+            src="/3d ornament.png"
+            alt=""
+            width={1719}
+            height={803}
+            priority
+            className="absolute h-auto "
+          />
+        </div> */}
+        
+          <h1 className="relative z-10 max-w-[760px] text-[38px] font-bold leading-[1.08] sm:text-5xl lg:text-[56px]">
             Get Access to Hundreds<br className="hidden sm:block" /> Courses Available
-            </h1>
-          <p className="mt-4 max-w-xl text-xs leading-relaxed text-white/80 sm:text-sm">Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.</p>
-          <form role="search" action="#discover" className="mt-6 flex h-12 w-full max-w-[460px] items-center gap-2 rounded-full bg-white p-1.5 pl-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]">
+          </h1>
+          <p className="relative z-10 mt-4 max-w-xl text-xs leading-relaxed text-white/80 sm:text-sm">
+            Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
+          </p>
+          <form role="search" action="#discover" className="relative z-10 mt-6 flex h-12 w-full max-w-[460px] items-center gap-2 rounded-full bg-white p-1.5 pl-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]">
             <label htmlFor="q" className="sr-only">Search courses</label>
             <input id="q" name="q" type="search" placeholder="Course, topic, creator" className="min-w-0 flex-1 bg-transparent text-xs text-neutral-800 placeholder:text-neutral-400 focus:outline-none" />
             <button type="submit" className="h-9 rounded-full bg-[#D8FF4F] px-5 text-xs font-semibold text-neutral-900 transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#003BE2]">Search</button>
