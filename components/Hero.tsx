@@ -37,9 +37,34 @@ export default function Hero() {
           <div className="relative mt-5 h-[350px] w-full max-w-[1000px] sm:h-[410px] md:h-[500px]">
             <div aria-hidden="true" className="absolute left-1/2 top-32 z-0 h-[580px] w-[620px] -translate-x-1/2 rounded-[50%] bg-[#D8FF4F] sm:top-36 sm:h-[700px] sm:w-[760px] lg:top-40 lg:h-[850px] lg:w-[900px]" />
             <Image src="/hero-student.png" alt="Student learning on a laptop with headphones" width={578} height={541} priority sizes="(max-width: 640px) 320px, (max-width: 1024px) 420px, 578px" className="absolute bottom-0 left-1/2 z-10 h-auto w-[310px] -translate-x-1/2 object-contain sm:w-[390px] md:w-[470px] lg:w-[578px]" />
-            <FloatCard className="left-0 top-16 sm:left-5 md:left-12 lg:left-16"><p className="text-[11px] font-semibold sm:text-xs">UI/UX Design</p><p className="mt-1 text-[9px] text-neutral-400 sm:text-[10px]">200 Courses · 1000+ Students</p></FloatCard>
-            <FloatCard className="right-0 top-5 sm:right-5 md:right-12 lg:right-16"><p className="text-[9px] text-neutral-500 sm:text-[10px]">Learning Progress</p><p className="mt-0.5 text-xl font-bold sm:text-2xl">55%</p><div className="mt-1 h-1 w-full rounded-full bg-neutral-200"><div className="h-full w-[55%] rounded-full bg-[#D8FF4F]" /></div></FloatCard>
-            <FloatCard className="bottom-7 left-0 sm:bottom-10 sm:left-5 md:left-12 lg:left-16"><p className="text-[10px] font-semibold sm:text-[11px]">Happy Students</p><p className="mt-1 text-[9px] text-neutral-400">4.5 (240) <span aria-label="stars" className="text-amber-400">★★★★★</span></p><div className="mt-2 flex items-center -space-x-1.5">{["AM", "JL", "SK"].map((initials, index) => <span key={initials} className={`grid h-6 w-6 place-items-center rounded-full border-2 border-white text-[7px] font-bold text-white ${index === 0 ? "bg-[#367A91]" : index === 1 ? "bg-[#C47D5D]" : "bg-[#6B78AA]"}`}>{initials}</span>)}<span className="grid h-6 w-8 place-items-center rounded-full border-2 border-white bg-[#D8FF4F] text-[7px] font-bold text-neutral-900">2K+</span></div></FloatCard>
+            <FloatCard className="left-0 top-16 sm:left-5 md:left-12 lg:left-16">
+              <p className="text-[11px] font-semibold sm:text-xs">UI/UX Design</p>
+              <p className="mt-1 text-[9px] text-neutral-400 sm:text-[10px]">200 Courses · 1000+ Students</p>
+            </FloatCard>
+            <FloatCard className="right-0 top-5 sm:right-5 md:right-12 lg:right-16">
+              <p className="text-[9px] text-neutral-500 sm:text-[10px]">Learning Progress</p>
+              <p className="mt-0.5 text-xl font-bold sm:text-2xl">55%</p>
+              <div className="mt-1 h-1 w-full rounded-full bg-neutral-200">
+                <div className="h-full w-[55%] rounded-full bg-[#D8FF4F]" />
+              </div>
+            </FloatCard>
+            <FloatCard className="bottom-7 left-0 sm:bottom-10 sm:left-5 md:left-12 lg:left-16">
+              <p className="text-[10px] font-semibold sm:text-[11px]">Happy Students</p>
+              <p className="mt-1 text-[9px] text-neutral-400">4.5 (240) <span aria-label="stars" className="text-amber-400">★★★★★</span></p>
+              <div className="mt-2 flex items-center -space-x-1.5">
+                {["AM", "JL", "SK"].map((initials, index) => (
+                  <span
+                    key={initials}
+                    className={`grid h-6 w-6 place-items-center rounded-full border-2 border-white text-[7px] font-bold text-white ${index === 0 ? "bg-[#367A91]" : index === 1 ? "bg-[#C47D5D]" : "bg-[#6B78AA]"}`}
+                  >
+                    {initials}
+                  </span>
+                ))}
+                <span className="grid h-6 w-8 place-items-center rounded-full border-2 border-white bg-[#D8FF4F] text-[7px] font-bold text-neutral-900">
+                  2K+
+                </span>
+              </div>
+            </FloatCard>
           </div>
         </div>
       </section>
