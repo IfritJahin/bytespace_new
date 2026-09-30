@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import NewsletterForm from "./NewsletterForm";
 
 const columns = [
   [
@@ -48,23 +49,7 @@ export default function Footer() {
             Stay Up to date with our latest features and releases by joining our newsletter.
             </p>
 
-            <form action="#" className="mt-6 flex max-w-[500px] items-center gap-2 sm:gap-3">
-              <label htmlFor="footer-email" className="sr-only">Email address</label>
-              <input
-                id="footer-email"
-                type="email"
-                name="email"
-                required
-                placeholder="Enter your email"
-                className="h-12 min-w-0 flex-1 rounded-full border border-neutral-300 bg-white px-4 sm:px-5 text-sm text-neutral-800 placeholder:text-neutral-400 focus:border-[#003BE2] focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="h-12 shrink-0 rounded-full bg-[#D8FF4F] px-4 text-sm sm:px-7 text-neutral-900 transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#003BE2]"
-              >
-                Search
-              </button>
-            </form>
+            <NewsletterForm />
             <p className="mt-3 max-w-[460px] text-xs leading-relaxed text-neutral-500">
                 By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.
             </p>

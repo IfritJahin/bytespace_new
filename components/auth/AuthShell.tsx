@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import CourseCard from "@/components/CourseCard";
+import HappyStudents from "@/components/HappyStudents";
 import { courses } from "@/lib/courses";
 
-const happyStudents = ["/p1.png", "/p2.png", "/p3.png", "/p4.png", "/p5.png", "/p6.png"];
 
 // The 3D ornaments only exist as white renders; mask a lime layer to the
 // shape and multiply the white render on top so the shading survives.
@@ -38,27 +38,12 @@ function Collage() {
         className="absolute top-[330px] left-[390px] z-20 h-auto w-[100px]"
       />
 
-      <div className="absolute top-[420px] left-[230px] z-30 w-[270px] rounded-2xl bg-[#D8FF4F] p-4 text-neutral-900 shadow-[0_12px_30px_rgba(0,0,0,.18)]">
-        <p className="font-[Satoshi-Bold] text-sm">Happy Students</p>
-        <p className="mt-0.5 flex items-center gap-1 text-[11px] text-neutral-700">
-          4.5 (240) <span className="text-neutral-900">★</span>
-        </p>
-        <div className="mt-3 flex items-center -space-x-2">
-          {happyStudents.map((src) => (
-            <Image
-              key={src}
-              src={src}
-              alt=""
-              width={32}
-              height={32}
-              className="h-8 w-8 rounded-full border-2 border-[#D8FF4F] object-cover"
-            />
-          ))}
-          <span className="grid h-8 w-8 place-items-center rounded-full border-2 border-[#D8FF4F] bg-neutral-900 text-[9px] font-bold text-white">
-            2K+
-          </span>
-        </div>
-      </div>
+      <HappyStudents
+        theme="lime"
+        size="sm"
+        avatars={["/p1.png", "/p2.png", "/p3.png", "/p4.png", "/p5.png", "/p6.png"]}
+        className="absolute top-[420px] left-[230px] z-30 w-[270px]"
+      />
     </div>
   );
 }

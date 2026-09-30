@@ -12,6 +12,14 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --animate-fade-up: fade-up 0.45s ease-out both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
 }
 
 html {
@@ -38,8 +46,8 @@ body {
   }
 }
 .nav-link {
-  font-family: var(--font-geist-sans), sans-serif;
-  font-size: 14px;
+  font-family: 'Satoshi-Medium', sans-serif;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.2;
 }

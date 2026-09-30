@@ -10,8 +10,10 @@ export default function Home() {
     <main>
       <Hero />
       <CourseCatalog />
-      <GrowthState/>
-      <CreatorsFeature/>
+      <div id="community">
+        <GrowthState/>
+        <CreatorsFeature/>
+      </div>
       <Testimonials />
       <Footer />
     </main>

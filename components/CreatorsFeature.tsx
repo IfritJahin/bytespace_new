@@ -30,7 +30,9 @@ export default function CreatorsFeature() {
         </p>
 
         <button className="mt-7 rounded-full bg-[#D8FF4F] px-6 py-3 text-xs font-semibold text-neutral-900 transition hover:brightness-95">
-          Join as Creator
+          <a href="/signup" target="_blank" rel="noopener noreferrer">
+            Join as Creator
+          </a>
         </button>
       </div>
     </section>
