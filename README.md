@@ -43,9 +43,7 @@ Open http://localhost:3000.
 | Command         | What it does                   |
 | --------------- | ------------------------------ |
 | `npm run dev`   | Start the dev server           |
-| `npm run build` | Create a production build      |
-| `npm run start` | Serve the production build     |
-| `npm run lint`  | Run ESLint                     |
+| `npm run build` | Create a production build      |              |
 
 ## Project structure
 
@@ -85,3 +83,4 @@ Each section was built on its own branch (for example `Hero_branch`, `components
 ## Not included yet
 
 - The login, signup and newsletter forms are not connected to a backend.- Some footer links point to `#` because the design has no pages for them.
+
