@@ -23,12 +23,13 @@ export default function ExploreLearning() {
         </p>
       </div>
 
-      <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:grid-cols-6">
+      {/* Tiles are 167x167 with a 24px radius in the Figma frame */}
+      <ul className="mx-auto mt-12 grid max-w-[1122px] grid-cols-2 justify-items-center gap-4 sm:grid-cols-3 md:gap-6 lg:grid-cols-6">
         {categories.map((c) => (
-          <li key={c.label}>
+          <li key={c.label} className="w-full max-w-[167px]">
             <a
               href="#discover"
-              className="flex h-full flex-col items-center gap-4 rounded-2xl border border-neutral-200 bg-white px-3 py-7 text-center transition hover:-translate-y-0.5 hover:border-[#D8FF4F] hover:shadow-[0_10px_30px_rgba(16,24,40,.08)]"
+              className="flex aspect-square w-full flex-col items-center justify-center gap-2 rounded-3xl border border-neutral-200 bg-white p-3 text-center transition hover:-translate-y-0.5 hover:border-[#D8FF4F] hover:shadow-[0_10px_30px_rgba(16,24,40,.08)]"
             >
               <Image src={c.src} alt="" width={60} height={60} className="h-[60px] w-[60px]" />
               <span className="text-sm font-medium text-neutral-800">{c.label}</span>

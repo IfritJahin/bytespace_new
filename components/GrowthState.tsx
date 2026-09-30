@@ -1,6 +1,8 @@
 import Image from "next/image";
 import CourseCard from "@/components/CourseCard";
 import { courses } from "@/lib/courses";
+import HappyStudents from "./HappyStudents";
+import CountUp from "./CountUp";
 
 const stats = [
   { value: "12K", label: "Students" },
@@ -9,8 +11,6 @@ const stats = [
 ];
 
 const points = ["Share Your Expertise", "Monetize Your Passion", "Flexibility and Autonomy", "Build a Community"];
-
-const happyStudents = ["/p1.png", "/p2.png", "/p3.png", "/p4.png", "/p5.png", "/p6.png", "/p7.png"];
 
 const figmaCourse = courses.find((c) => c.title === "Learn Figma from Basic")!;
 
@@ -54,14 +54,16 @@ export default function GrowthState() {
               on a new career path entirely, we have the resources you need.
             </p>
 
-            <dl className="mt-8 flex gap-10 sm:gap-14 lg:mt-10 lg:gap-12">
+            <div className="mt-8 flex gap-10 sm:gap-14 lg:mt-10 lg:gap-12">
               {stats.map((s) => (
                 <div key={s.label} className="flex flex-col-reverse">
-                  <dt className="mt-1 text-sm text-neutral-600 lg:text-[17px]">{s.label}</dt>
-                  <dd className="text-3xl text-[#003BE2] md:text-[32px] lg:text-[34px] lg:leading-tight">{s.value}</dd>
+                  <span className="mt-1 text-sm text-neutral-600 lg:text-[17px]">{s.label}</span>
+                  <div className="text-3xl text-[#003BE2] md:text-[32px] lg:text-[34px] lg:leading-tight">
+                    <CountUp value={s.value} />
+                  </div>
                 </div>
               ))}
-            </dl>
+            </div>
           </div>
 
           {/* Collage measured from the Figma frame (703x697). Positions are % of the
@@ -134,29 +136,7 @@ export default function GrowthState() {
               height={216}
               className="absolute top-[15%] left-[51%] z-20 h-auto w-[40%] rotate-[8deg]"
             />
-
-            <div className="absolute top-[57.9%] left-[48%] z-30 w-[44.5%] rounded-[2.7cqw] bg-white p-[2.7cqw] shadow-[0_10px_30px_rgba(16,24,40,.12)]">
-              <p className="text-[2.7cqw] leading-tight text-neutral-900">Happy Students</p>
-              <p className="mt-[0.4cqw] flex items-center gap-[0.8cqw] text-[1.9cqw] text-neutral-500">
-                <span className="font-semibold text-neutral-900">4.5</span> (240)
-                <span aria-hidden="true" className="text-[#C8F31D]">★</span>
-              </p>
-              <div className="mt-[1.6cqw] flex items-center">
-                {happyStudents.map((src) => (
-                  <Image
-                    key={src}
-                    src={src}
-                    alt=""
-                    width={40}
-                    height={40}
-                    className="-mr-[1.4cqw] h-[6.1cqw] w-[6.1cqw] shrink-0 rounded-full border-[0.35cqw] border-white object-cover"
-                  />
-                ))}
-                <span className="grid h-[6.8cqw] w-[6.8cqw] shrink-0 place-items-center rounded-full bg-[#D8FF4F] text-[2.1cqw] font-semibold text-neutral-900">
-                  2K+
-                </span>
-              </div>
-            </div>
+<HappyStudents className="absolute top-[57.9%] left-[48%] z-30 w-[44.5%]" />
           </div>
 
           <div className="order-1 md:order-2 md:pl-4 lg:pt-[100px] lg:pl-0">

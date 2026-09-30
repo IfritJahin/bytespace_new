@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { courses } from "@/lib/courses";
-import CourseCard from "./CourseCard";
+import { Suspense, useState } from "react";
+import FilteredCourses, { CourseGrid, filterCourses } from "./FilteredCourses";
 import ExploreLearning from "./ExploreLearning";
 
 const tabs = [
@@ -69,13 +68,9 @@ export default function CourseCatalog() {
           </button>
         </div>
 
-        <ul className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-16 lg:grid-cols-3 lg:gap-7">
-          {courses.map((c) => (
-            <li key={c.title}>
-              <CourseCard course={c} />
-            </li>
-          ))}
-        </ul>
+        <Suspense fallback={<CourseGrid items={filterCourses(active)} />}>
+          <FilteredCourses category={active} onShowAll={() => setActive(tabs[0])} />
+        </Suspense>
       </div>
 
       <ExploreLearning />
