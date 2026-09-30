@@ -83,3 +83,4 @@ Each section was built on its own branch (for example `Hero_branch`, `components
 ## Not included yet
 
 - The login, signup and newsletter forms are not connected to a backend.- Some footer links point to `#` because the design has no pages for them.
+
