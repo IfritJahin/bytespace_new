@@ -15,20 +15,23 @@ export default function CourseCard({
   course: c,
   imageSizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px",
   className = "",
+  compact = false,
 }: {
   course: Course;
   imageSizes?: string;
   className?: string;
+  // Tighter card used inside collages (Growth section, auth pages)
+  compact?: boolean;
 }) {
   return (
     <div className={`rounded-2xl border border-neutral-200 bg-white p-3 text-left text-neutral-900 ${className}`}>
-      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-neutral-100">
+      <div className={`relative ${compact ? "aspect-[7/4]" : "aspect-[16/10]"} w-full overflow-hidden rounded-xl bg-neutral-100`}>
         <Image src={c.img} alt={c.title} fill sizes={imageSizes} className="object-cover" />
-        <div className="absolute inset-x-3 bottom-3 flex flex-wrap gap-1.5">
+        <div className="absolute inset-x-2 bottom-2 flex flex-nowrap gap-1">
           {c.meta.map((m) => (
             <span
               key={m}
-              className="rounded-full bg-white/70 px-2.5 py-1 text-[10px] text-neutral-700 backdrop-blur-sm sm:text-[11px]"
+              className="whitespace-nowrap rounded-full bg-white/70 px-2 py-1 text-[9px] leading-none text-neutral-700 backdrop-blur-sm sm:text-[10px]"
             >
               {m}
             </span>
@@ -36,7 +39,7 @@ export default function CourseCard({
         </div>
       </div>
 
-      <div className="px-1 pt-4 pb-1">
+      <div className={`px-1 pb-1 ${compact ? "pt-3" : "pt-4"}`}>
         <div className="flex items-center justify-between gap-3">
           <h3 className="truncate text-base font-semibold text-neutral-900" title={c.title}>
             {c.title}
@@ -48,7 +51,7 @@ export default function CourseCard({
         </div>
         <p className="mt-1 text-xs text-[#003BE2]">by {c.author}</p>
 
-        <div className="mt-4 flex items-center gap-3">
+        <div className={`flex items-center gap-3 ${compact ? "mt-3" : "mt-4"}`}>
           <span className="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1.5 text-[11px] text-neutral-700">
             <svg aria-hidden="true" viewBox="0 0 12 12" className="h-3 w-3 text-neutral-700" fill="currentColor">
               <rect x="1" y="7" width="2" height="4" rx=".5" />
@@ -77,7 +80,7 @@ export default function CourseCard({
           </div>
         </div>
 
-        <p className="mt-4 flex items-baseline gap-0.5">
+        <p className={`flex items-baseline gap-0.5 ${compact ? "mt-2" : "mt-4"}`}>
           <span className="text-lg font-bold text-[#003BE2]">{c.price}</span>
           <span className="text-[11px] text-neutral-400">/lifetime</span>
         </p>
