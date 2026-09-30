@@ -3,44 +3,60 @@ import Navbar from "./Navbar";
 import CourseCatalog from "./CourseCatalog";
 
 const logos = [{src: "/Frame (1).png"}, {src: "/Frame (2).png"}, {src: "/Frame (3).png"}, {src: "/Frame (4).png"}, {src: "/Frame (5).png"}];
-const ornaments = [
-  {
-    src: "/colorspring.png",
-    width: 200,
-    height: 200,
-    className: "left-[-18px] top-[130px] w-[250px] max-xl:left-[-60px] max-xl:top-[100px] max-xl:w-[180px] max-md:left-[-85px] max-md:top-[90px] max-md:w-[150px] max-sm:left-[-70px] max-sm:top-[110px] max-sm:w-[110px]",
-  },
-  {
-    src: "/spring1.png",
-    width: 175,
-    height: 175,
-    className: "left-[184px] top-[390px] w-[175px] -rotate-180 max-xl:left-[70px] max-xl:top-[380px] max-xl:w-[130px] max-md:hidden",
-  },
-  {
-    src: "/spring2.png",
-    width: 330,
-    height: 330,
-    className: "right-[-15px] top-[580px] w-[330px] max-xl:right-[-50px] max-xl:top-[560px] max-xl:w-[220px] max-sm:hidden",
-  },
-  {
-    src: "/Cone.png",
-    width: 188,
-    height: 188,
-    className: "right-[150px] top-[375px] w-[188px] max-xl:right-[-20px] max-xl:top-[350px] max-xl:w-[145px] max-md:hidden",
-  },
-  {
-    src: "/circle.png",
-    width: 342,
-    height: 342,
-    className: "left-[10px] top-[590px] w-[342px] max-xl:left-[-70px] max-xl:top-[560px] max-xl:w-[260px] max-sm:left-[-110px] max-sm:top-[560px] max-sm:w-[190px]",
-  },
-  {
-    src: "/cyllinder.png",
-    width: 370,
-    height: 370,
-    className: "right-[-20px] top-[115px] w-[250px] max-xl:right-[-80px] max-xl:top-[90px] max-xl:w-[190px] max-md:right-[-110px] max-md:top-[70px] max-md:w-[160px] max-sm:right-[-95px] max-sm:top-[60px] max-sm:w-[120px]",
-  },
+// Figma measurements on the 1440px frame. Rendered as n * var(--u), where --u is
+// 1px at 1440 and shrinks with the viewport, so the composition keeps the same
+// arrangement on every screen instead of being rearranged per breakpoint.
+type Ornament = {
+  src: string;
+  width: number;
+  height: number;
+  size: number;
+  x: { left: number } | { right: number };
+  y: { top: number } | { bottom: number };
+  className?: string;
+};
+
+const u = (n: number) => `calc(${n} * var(--u))`;
+
+// Anchored to the top of the hero and to the viewport edges: both renders are
+// cropped flat on one side, so they must bleed off the screen edge even on
+// monitors wider than the 1440px frame.
+const topOrnaments: Ornament[] = [
+  { src: "/colorspring.png", width: 267, height: 387, size: 250, x: { left: -18 }, y: { top: 215 }, className: "max-sm:-translate-x-1/2" },
+  { src: "/cyllinder.png", width: 213, height: 372, size: 250, x: { right: -20 }, y: { top: 200 }, className: "max-sm:translate-x-1/2" },
 ];
+
+// Anchored to the student stage (circle + cards), so they stay around the
+// circle however much the headline wraps above it.
+const stageOrnaments: Ornament[] = [
+  { src: "/spring1.png", width: 177, height: 176, size: 175, x: { left: 184 }, y: { top: -17 }, className: "-rotate-180 max-md:translate-y-[115px]" },
+  { src: "/Cone.png", width: 190, height: 189, size: 188, x: { right: 150 }, y: { top: -32 }, className: "max-md:translate-y-[115px]" },
+  { src: "/circle.png", width: 346, height: 343, size: 342, x: { left: -9 }, y: { bottom: -2 } },
+  { src: "/spring2.png", width: 317, height: 332, size: 330, x: { right: -15 }, y: { bottom: 20 } },
+];
+
+function OrnamentLayer({ items, className }: { items: Ornament[]; className: string }) {
+  return (
+    <div aria-hidden="true" className={`pointer-events-none absolute ${className}`}>
+      {items.map((o) => (
+        <Image
+          key={o.src}
+          src={o.src}
+          alt=""
+          width={o.width}
+          height={o.height}
+          sizes="(max-width: 1440px) 25vw, 350px"
+          className={`absolute h-auto max-w-none ${o.className ?? ""}`}
+          style={{
+            width: u(o.size),
+            ...("left" in o.x ? { left: u(o.x.left) } : { right: u(o.x.right) }),
+            ...("top" in o.y ? { top: u(o.y.top) } : { bottom: u(o.y.bottom) }),
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 export default function Hero() {
   return (
     <>
@@ -49,12 +65,16 @@ export default function Hero() {
         // className="relative isolate overflow-hidden bg-[#003BE2] pb-0 text-white"
         className="relative isolate overflow-hidden bg-[#003BE2] pb-0 text-white"
         style={{
+          // 1px at the 1440px design width; floor keeps ornaments visible on phones
+          ["--u" as string]: "clamp(0.42px, 100vw / 1440, 1px)",
           backgroundImage:
             "linear-gradient(rgba(255,255,255,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.075) 1px,transparent 1px)",
-          backgroundSize: "66px 66px",
+          backgroundSize: "calc(66 * var(--u)) calc(66 * var(--u))",
+          backgroundPosition: "center top",
         }}
       >
         <Navbar />
+        <OrnamentLayer items={topOrnaments} className="inset-0 z-0" />
         {/* 3D ornaments: above the circle and content, natural size, centered on the frame */}
         {/* <div
           aria-hidden="true"
@@ -70,21 +90,6 @@ export default function Hero() {
           />
         </div> */}
         <div className="relative z-10 mx-auto flex max-w-[1440px] flex-col items-center px-5 pt-8 text-center sm:px-8 md:pt-10 lg:pt-12 xl:pt-[91px]">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-[1]"
-        >
-          {ornaments.map((ornament) => (
-            <Image
-              key={ornament.src}
-              src={ornament.src}
-              alt=""
-              width={ornament.width}
-              height={ornament.height}
-              className={`absolute h-auto ${ornament.className}`}
-            />
-          ))}
-        </div>
         {/* <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-30"
@@ -124,16 +129,17 @@ export default function Hero() {
             </div>
             <button type="submit" className="h-[52px] shrink-0 rounded-full bg-[#D8FF4F] px-7 text-base text-neutral-900 transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white max-sm:h-12 max-sm:px-4 max-sm:text-sm">Search</button>
           </form>
-          <div className="relative mt-5 h-[400px] w-full max-w-[1200px] xl:-mt-5 sm:h-[460px] md:h-[520px] xl:h-[523px]">
-            <div aria-hidden="true" className="absolute left-1/2 top-[150px] z-0 h-[580px] w-[620px] -translate-x-1/2 rounded-[50%] bg-[#D8FF4F] sm:top-[160px] md:top-36 sm:h-[700px] sm:w-[800px] xl:top-[91px] xl:h-[950px] xl:w-[1140px] max-sm:h-[500px] max-sm:w-[520px]" />
+          <div className="relative mt-5 h-[450px] w-full max-w-[1200px] xl:-mt-5 sm:h-[460px] md:h-[520px] xl:h-[523px]">
+            <OrnamentLayer items={stageOrnaments} className="inset-y-0 left-1/2 z-[1] w-screen max-w-[1440px] -translate-x-1/2" />
+            <div aria-hidden="true" className="absolute left-1/2 top-[170px] z-0 h-[580px] w-[620px] -translate-x-1/2 rounded-[50%] bg-[#D8FF4F] sm:top-[160px] md:top-36 sm:h-[700px] sm:w-[800px] xl:top-[91px] xl:h-[950px] xl:w-[1140px] max-sm:h-[500px] max-sm:w-[520px]" />
             <Image
               src="/hero-student.png"
               alt="Student learning on a laptop with headphones"
               width={722}
               height={515}
               priority
-              sizes="(max-width: 640px) 320px, (max-width: 1024px) 470px, 700px"
-              className="absolute bottom-0 left-1/2 z-10 h-auto w-[310px] -translate-x-1/2 object-contain sm:w-[380px] md:w-[500px] xl:left-[calc(50%+55px)] xl:w-[700px] max-sm:left-[60%] max-sm:w-[88vw] max-sm:max-w-[340px]"
+              sizes="(max-width: 640px) 440px, (max-width: 1024px) 470px, 700px"
+              className="absolute bottom-0 left-1/2 z-10 h-auto w-[310px] -translate-x-1/2 object-contain sm:w-[380px] md:w-[500px] xl:left-[calc(50%+55px)] xl:w-[700px] max-sm:left-[55%] max-sm:w-[480px] max-sm:max-w-none"
             />
             <FloatCard className="left-0 top-[150px] w-[206px] md:left-10 xl:left-[278px] xl:top-[143px] max-md:top-5 max-md:w-[180px] max-sm:top-3 max-sm:w-[46%] max-sm:max-w-[165px] max-sm:p-2.5">
               <p className="font-[Satoshi-Bold] text-sm sm:text-base">UI/UX Design</p>
